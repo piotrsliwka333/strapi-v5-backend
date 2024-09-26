@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_elements_deep_links",
+  "info": {
+    "displayName": "Deep Link",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "isExternal": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_elements_main_links",
+  "info": {
+    "displayName": "Main Link",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "isExternal": {
+      "type": "boolean"
+    },
+    "nestedLinks": {
+      "displayName": "Link",
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.link"
+    }
+  }
+}

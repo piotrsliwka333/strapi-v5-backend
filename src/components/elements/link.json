@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_elements_links",
+  "info": {
+    "displayName": "Link",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "isExternal": {
+      "type": "boolean"
+    },
+    "deepNestedLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.deep-link"
+    }
+  }
+}
