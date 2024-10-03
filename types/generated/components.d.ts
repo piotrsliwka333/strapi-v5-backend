@@ -87,20 +87,6 @@ export interface ElementsLink extends Struct.ComponentSchema {
     text: Schema.Attribute.String;
     url: Schema.Attribute.String;
     isExternal: Schema.Attribute.Boolean;
-    deepNestedLinks: Schema.Attribute.Component<'elements.deep-link', true>;
-  };
-}
-
-export interface ElementsDeepLink extends Struct.ComponentSchema {
-  collectionName: 'components_elements_deep_links';
-  info: {
-    displayName: 'Deep Link';
-    icon: 'apps';
-  };
-  attributes: {
-    text: Schema.Attribute.String;
-    url: Schema.Attribute.String;
-    isExternal: Schema.Attribute.Boolean;
   };
 }
 
@@ -114,7 +100,6 @@ declare module '@strapi/strapi' {
       'layout.header': LayoutHeader;
       'elements.main-link': ElementsMainLink;
       'elements.link': ElementsLink;
-      'elements.deep-link': ElementsDeepLink;
     }
   }
 }
