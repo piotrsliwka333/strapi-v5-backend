@@ -70,7 +70,7 @@ export default {
   //                                   <div>
   //                                     <img
   //                                       style="margin: 0 0 30px 0"
-  //                                       src="https://generous-leader-d581ba65b8.strapiapp.com/logo_1_f352c1dc2b.png"
+  //                                       src="https://generous-leader-d581ba65b8.media.strapiapp.com/logo_1_1_6acbc018f0.png"
   //                                     />
   //                                     <h1
   //                                       style="
@@ -181,7 +181,7 @@ export default {
                                   <div>
                                     <img
                                       style="margin: 0 0 30px 0"
-                                      src="https://generous-leader-d581ba65b8.strapiapp.com/logo_1_f352c1dc2b.png"
+                                      src="https://generous-leader-d581ba65b8.media.strapiapp.com/logo_1_1_6acbc018f0.png"
                                     />
                                     <h1
                                       style="
