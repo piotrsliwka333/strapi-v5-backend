@@ -1,4 +1,4 @@
-const { errors } = require("@strapi/utils");
+const { errors } = require('@strapi/utils');
 const { ApplicationError } = errors;
 
 /// really important !!!!!!!
@@ -8,140 +8,146 @@ const { ApplicationError } = errors;
 
 export default {
   async beforeCreate(event) {
-    console.log("test !!!");
+    console.log('test !!!');
+    console.log(event);
+
     const { data } = event.params;
-    const response = await strapi.db
-      .query("api::newsletter-user.newsletter-user")
-      .findOne({
-        where: { email: data.email },
-      });
-    console.log("beforeCreate - response");
+    const response = await strapi.db.query('api::newsletter-user.newsletter-user').findOne({
+      where: { email: data.email },
+    });
+    console.log('beforeCreate - response');
     console.log(response);
 
     if (response && response.isConfirmed)
-      throw new ApplicationError(
-        "strapiErrors.newsletter.emailAssignedAndConfirmed",
-        { foo: "bar" }
-      );
-    if (response && response.email && !response.isConfirmed) {
-      await strapi.plugins["email"].services.email.send({
-        // here it don't have id  yet because it hasn't been created yet. in before
-        to: response.email,
-        from: "piotrsliwka333@gmail.com", // e.g. single sender verification in SendGrid
-        replyTo: "piotrsliwka333@gmail.com",
-        subject: "Rohi Global consulting Newsletter",
-        text: "Welcome to Rohi Global consulting Newsletter. Here is your confirmation link", // Replace with a valid field ID
-        html: `
-      <table width="100%" style="width: 100% !important" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td align="center">
-              <table
-                width="600px"
-                border="0"
-                cellspacing="0"
-                cellpadding="40"
-                style="border: 1px solid #eaeaea; border-radius: 5px; margin: 40px"
-              >
-                <tbody>
-                  <tr>
-                    <td align="center">
-                      <div
-                        style="
-                          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-                            'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-                            'Helvetica Neue', sans-serif;
-                          text-align: left;
-                          width: 465px;
-                        "
-                      >
-                        <table
-                          style="width: 100% !important; margin: 0 0 40px 0"
-                          border="0"
-                          cellspacing="0"
-                          cellpadding="0"
-                        >
-                          <tbody>
-                            <tr>
-                              <td align="center">
-                                <div>
-                                  <img
-                                    style="margin: 0 0 30px 0"
-                                    src="https://steadfast-wisdom-8b7aca22e3.media.strapiapp.com/logo_1_f352c1dc2b.png"
-                                  />
-                                  <h1
-                                    style="
-                                      color: #000;
-                                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                                        'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-                                        'Droid Sans', 'Helvetica Neue', sans-serif;
-                                      font-size: 24px;
-                                      font-weight: normal;
-                                      margin: 0 0 30px 0;
-                                      padding: 0;
-                                    "
-                                  >
-                                    Newsletter confirmation
-                                  </h1>
-                                  <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px">
-                                    Hello, here is your confirmation link to sign up for our
-                                    newsletter. Click the button bellow in order to start receiving
-                                    informations from us.
-                                  </p>
-                                  <a
-                                    target="_blank"
-                                    href="${`https://blog-app-frontend-coral.vercel.app/newsletter/subscribe?newsletterUserId=${response.id}&confirmationToken=${response.confirmationToken}`}"
-                                    style="
-                                      background-color: #000;
-                                      border-radius: 5px;
-                                      color: #fff;
-                                      display: inline-block;
-                                      font-family: -apple-system, system-ui, BlinkMacSystemFont,
-                                        'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-                                        'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-                                      font-size: 12px;
-                                      font-weight: 500;
-                                      line-height: 50px;
-                                      text-align: center;
-                                      text-decoration: none;
-                                      width: 200px;
-                                    "
-                                  >
-                                    Confirm your email
-                                  </a>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      `,
+      throw new ApplicationError('strapiErrors.newsletter.emailAssignedAndConfirmed', {
+        foo: 'bar',
       });
-      throw new ApplicationError(
-        "strapiErrors.newsletter.emailAssignedAndNotConfirmed",
-        { foo: "bar" }
-      );
+    if (response && response.email && !response.isConfirmed) {
+      try {
+        await strapi.plugins['email'].services.email.send({
+          // here it don't have id  yet because it hasn't been created yet. in before
+          to: response.email,
+          from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
+          replyTo: 'piotrsliwka333@gmail.com',
+          subject: 'Rohi Global consulting Newsletter',
+          text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
+          html: `
+          <table width="100%" style="width: 100% !important" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td align="center">
+                  <table
+                    width="600px"
+                    border="0"
+                    cellspacing="0"
+                    cellpadding="40"
+                    style="border: 1px solid #eaeaea; border-radius: 5px; margin: 40px"
+                  >
+                    <tbody>
+                      <tr>
+                        <td align="center">
+                          <div
+                            style="
+                              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+                                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+                                'Helvetica Neue', sans-serif;
+                              text-align: left;
+                              width: 465px;
+                            "
+                          >
+                            <table
+                              style="width: 100% !important; margin: 0 0 40px 0"
+                              border="0"
+                              cellspacing="0"
+                              cellpadding="0"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td align="center">
+                                    <div>
+                                      <img
+                                        style="margin: 0 0 30px 0"
+                                        src="https://generous-leader-d581ba65b8.strapiapp.com/logo_1_f352c1dc2b.png"
+                                      />
+                                      <h1
+                                        style="
+                                          color: #000;
+                                          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                            'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+                                            'Droid Sans', 'Helvetica Neue', sans-serif;
+                                          font-size: 24px;
+                                          font-weight: normal;
+                                          margin: 0 0 30px 0;
+                                          padding: 0;
+                                        "
+                                      >
+                                        Newsletter confirmation
+                                      </h1>
+                                      <p style="color:#000;font-family:-apple-system,system-ui,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;font-size:14px;line-height:24px">
+                                        Hello, here is your confirmation link to sign up for our
+                                        newsletter. Click the button bellow in order to start receiving
+                                        informations from us.
+                                      </p>
+                                      <a
+                                        target="_blank"
+                                        href="${`https://strapi-v5-frontend.vercel.app/newsletter/subscribe?newsletterUserId=${response.id}&confirmationToken=${response.confirmationToken}`}"
+                                        style="
+                                          background-color: #000;
+                                          border-radius: 5px;
+                                          color: #fff;
+                                          display: inline-block;
+                                          font-family: -apple-system, system-ui, BlinkMacSystemFont,
+                                            'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+                                            'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                                          font-size: 12px;
+                                          font-weight: 500;
+                                          line-height: 50px;
+                                          text-align: center;
+                                          text-decoration: none;
+                                          width: 200px;
+                                        "
+                                      >
+                                        Confirm your email
+                                      </a>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          `,
+        });
+      } catch (e) {
+        throw new ApplicationError('strapiErrors.newsletter.smtp_server_error', {
+          foo: 'bar',
+        });
+      }
+
+      throw new ApplicationError('strapiErrors.newsletter.emailAssignedAndNotConfirmed', {
+        foo: 'bar',
+      });
     }
   },
 
   async afterCreate(event) {
     // Connected to "Save" button in admin panel
+    console.log('after Create !!!!!');
     const { result } = event;
     try {
-      await strapi.plugins["email"].services.email.send({
+      await strapi.plugins['email'].services.email.send({
         to: result.email,
-        from: "piotrsliwka333@gmail.com", // e.g. single sender verification in SendGrid
-        replyTo: "piotrsliwka333@gmail.com",
-        subject: "Rohi Global consulting Newsletter",
-        text: "Welcome to Rohi Global consulting Newsletter. Here is your confirmation link", // Replace with a valid field ID
+        from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
+        replyTo: 'piotrsliwka333@gmail.com',
+        subject: 'Rohi Global consulting Newsletter',
+        text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
         html: `
         <table width="100%" style="width: 100% !important" border="0" cellspacing="0" cellpadding="0">
           <tbody>
@@ -178,7 +184,7 @@ export default {
                                   <div>
                                     <img
                                       style="margin: 0 0 30px 0"
-                                      src="https://steadfast-wisdom-8b7aca22e3.media.strapiapp.com/logo_1_f352c1dc2b.png"
+                                      src="https://generous-leader-d581ba65b8.strapiapp.com/logo_1_f352c1dc2b.png"
                                     />
                                     <h1
                                       style="
@@ -201,7 +207,7 @@ export default {
                                     </p>
                                     <a
                                       target="_blank"
-                                      href="${`https://blog-app-frontend-coral.vercel.app/newsletter/subscribe?newsletterUserId=${result.id}&confirmationToken=${result.confirmationToken}`}"
+                                      href="${`https://strapi-v5-frontend.vercel.app/newsletter/subscribe?newsletterUserId=${result.id}&confirmationToken=${result.confirmationToken}`}"
                                       style="
                                         background-color: #000;
                                         border-radius: 5px;
@@ -237,8 +243,9 @@ export default {
         `,
       });
     } catch (err) {
-      console.log(err);
-      console.log(err.code);
+      throw new ApplicationError('strapiErrors.newsletter.smtp_server_error', {
+        foo: 'bar',
+      });
     }
   },
 };

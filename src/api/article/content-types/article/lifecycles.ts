@@ -1,5 +1,5 @@
 function getStrapiURL(path = "") {
-  return `${"https://steadfast-wisdom-8b7aca22e3.strapiapp.com"}${path}`;
+  return `${"https://generous-leader-d581ba65b8.strapiapp.com"}${path}`;
 }
 
 function getStrapiMedia(url) {
@@ -66,7 +66,7 @@ const sendNewsletter = async (
                               <div>
                                 <img
                                   style="margin: 0 0 30px 0"
-                                  src="https://steadfast-wisdom-8b7aca22e3.media.strapiapp.com/logo_1_f352c1dc2b.png"
+                                  src="https://generous-leader-d581ba65b8.strapiapp.com/logo_1_f352c1dc2b.png"
                                 />
                                 <h1
                                   style="
@@ -102,7 +102,7 @@ const sendNewsletter = async (
                                 </p>
                                 <a
                                   target="_blank"
-                                  href="https://blog-app-frontend-coral.vercel.app/blog/all/<%= slug %>"
+                                  href="https://strapi-v5-frontend.vercel.app/blog/all/<%= slug %>"
                                   style="
                                     background-color: #000;
                                     border-radius: 5px;
@@ -159,7 +159,7 @@ const sendNewsletter = async (
                                 </p>
                                 <a 
                                 target="_blank"
-                                href="${`https://blog-app-frontend-coral.vercel.app/newsletter/unsubscribe?newsletterUserId=<%= newsletterUserId %>&unsubscribeToken=<%= unsubscribeToken %>`}"
+                                href="${`https://strapi-v5-frontend.vercel.app/newsletter/unsubscribe?newsletterUserId=<%= newsletterUserId %>&unsubscribeToken=<%= unsubscribeToken %>`}"
                                 style="color: #067df7; text-decoration: none"
                                   >
                                   Unsubscribe
