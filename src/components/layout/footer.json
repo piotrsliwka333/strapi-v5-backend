@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_layout_footers",
+  "info": {
+    "displayName": "Footer",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "brandLogos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "legalInformation": {
+      "type": "string",
+      "required": false
+    },
+    "mainLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.main-link"
+    },
+    "contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.footer-contact"
+    },
+    "newsletter": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.newsletter",
+      "required": true
+    }
+  }
+}

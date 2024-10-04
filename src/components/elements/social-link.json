@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_elements_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "FACEBOOK",
+        "X",
+        "INSTAGRAM",
+        "YOUTUBE",
+        "LINKEDIN"
+      ]
+    }
+  }
+}

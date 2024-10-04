@@ -2,24 +2,25 @@
   "collectionName": "components_layout_headers",
   "info": {
     "displayName": "Header",
-    "icon": "apps"
+    "icon": "apps",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "logo": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    },
     "mainLinks": {
       "type": "component",
       "repeatable": true,
       "component": "elements.main-link"
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link"
+    },
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.logo"
     }
   }
 }

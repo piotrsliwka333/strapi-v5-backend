@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_users",
+  "info": {
+    "singularName": "newsletter-user",
+    "pluralName": "newsletter-users",
+    "displayName": "Newsletter User"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "unsubscribeToken": {
+      "type": "uid",
+      "required": true
+    },
+    "confirmationToken": {
+      "type": "uid",
+      "required": true
+    },
+    "isConfirmed": {
+      "type": "boolean",
+      "required": true
+    }
+  }
+}

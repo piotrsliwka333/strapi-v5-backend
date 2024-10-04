@@ -55,10 +55,63 @@ export interface LayoutHeader extends Struct.ComponentSchema {
   info: {
     displayName: 'Header';
     icon: 'apps';
+    description: '';
   };
   attributes: {
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     mainLinks: Schema.Attribute.Component<'elements.main-link', true>;
+    button: Schema.Attribute.Component<'elements.link', false>;
+    logo: Schema.Attribute.Component<'elements.logo', false>;
+  };
+}
+
+export interface LayoutFooter extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'Footer';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    brandLogos: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    legalInformation: Schema.Attribute.String;
+    mainLinks: Schema.Attribute.Component<'elements.main-link', true>;
+    contact: Schema.Attribute.Component<'elements.footer-contact', false>;
+    newsletter: Schema.Attribute.Component<'elements.newsletter', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsSocialLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_social_links';
+  info: {
+    displayName: 'Social Link';
+    icon: 'apps';
+  };
+  attributes: {
+    url: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<
+      ['FACEBOOK', 'X', 'INSTAGRAM', 'YOUTUBE', 'LINKEDIN']
+    >;
+  };
+}
+
+export interface ElementsNewsletter extends Struct.ComponentSchema {
+  collectionName: 'components_elements_newsletters';
+  info: {
+    displayName: 'Newsletter';
+    icon: 'apps';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    buttonText: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    inputPlaceholder: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -67,12 +120,27 @@ export interface ElementsMainLink extends Struct.ComponentSchema {
   info: {
     displayName: 'Main Link';
     icon: 'apps';
+    description: '';
   };
   attributes: {
-    text: Schema.Attribute.String;
-    url: Schema.Attribute.String;
-    isExternal: Schema.Attribute.Boolean;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+    isExternal: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     nestedLinks: Schema.Attribute.Component<'elements.link', true>;
+  };
+}
+
+export interface ElementsLogo extends Struct.ComponentSchema {
+  collectionName: 'components_elements_logos';
+  info: {
+    displayName: 'Logo';
+    icon: 'apps';
+  };
+  attributes: {
+    text: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
   };
 }
 
@@ -84,9 +152,26 @@ export interface ElementsLink extends Struct.ComponentSchema {
     description: '';
   };
   attributes: {
-    text: Schema.Attribute.String;
-    url: Schema.Attribute.String;
-    isExternal: Schema.Attribute.Boolean;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+    isExternal: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ElementsFooterContact extends Struct.ComponentSchema {
+  collectionName: 'components_elements_footer_contacts';
+  info: {
+    displayName: 'Footer Contact';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    link: Schema.Attribute.Component<'elements.link', false>;
+    email: Schema.Attribute.Email;
+    phoneNumber: Schema.Attribute.String;
+    socialLinks: Schema.Attribute.Component<'elements.social-link', true>;
   };
 }
 
@@ -98,8 +183,13 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
       'layout.header': LayoutHeader;
+      'layout.footer': LayoutFooter;
+      'elements.social-link': ElementsSocialLink;
+      'elements.newsletter': ElementsNewsletter;
       'elements.main-link': ElementsMainLink;
+      'elements.logo': ElementsLogo;
       'elements.link': ElementsLink;
+      'elements.footer-contact': ElementsFooterContact;
     }
   }
 }

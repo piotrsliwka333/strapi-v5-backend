@@ -2,18 +2,23 @@
   "collectionName": "components_elements_main_links",
   "info": {
     "displayName": "Main Link",
-    "icon": "apps"
+    "icon": "apps",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "isExternal": {
-      "type": "boolean"
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
     "nestedLinks": {
       "displayName": "Link",
