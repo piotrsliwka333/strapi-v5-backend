@@ -102,7 +102,7 @@ const sendNewsletter = async (
                                 </p>
                                 <a
                                   target="_blank"
-                                  href="https://strapi-v5-frontend.vercel.app/blog/all/<%= slug %>"
+                                  href="https://strapi-v5-frontend.vercel.app/blog/articles/<%= slug %>"
                                   style="
                                     background-color: #000;
                                     border-radius: 5px;
