@@ -1,5 +1,5 @@
-function getStrapiURL(path = "") {
-  return `${"https://generous-leader-d581ba65b8.strapiapp.com"}${path}`;
+function getStrapiURL(path = '') {
+  return `${'https://generous-leader-d581ba65b8.strapiapp.com'}${path}`;
 }
 
 function getStrapiMedia(url) {
@@ -8,7 +8,7 @@ function getStrapiMedia(url) {
   }
 
   // Return the full URL if the media is hosted on an external provider
-  if (url.startsWith("http") || url.startsWith("//")) {
+  if (url.startsWith('http') || url.startsWith('//')) {
     return url;
   }
 
@@ -18,16 +18,16 @@ function getStrapiMedia(url) {
 
 const sendNewsletter = async (
   userEmail,
-  newsletterUserId,
+  newsletterUserDocumentId,
   unsubscribeToken,
   title,
   description,
   coverUrl,
   slug
 ) => {
-  console.log("sendNewsletter");
+  console.log('sendNewsletter');
   const emailTemplate = {
-    subject: "Welcome <%= user.email %>",
+    subject: 'Welcome <%= user.email %>',
     text: `Welcome to Rohi Global consulting
       New Articlee has been added`,
     html: `
@@ -159,7 +159,7 @@ const sendNewsletter = async (
                                 </p>
                                 <a 
                                 target="_blank"
-                                href="${`https://strapi-v5-frontend.vercel.app/newsletter/unsubscribe?newsletterUserId=<%= newsletterUserId %>&unsubscribeToken=<%= unsubscribeToken %>`}"
+                                href="${`https://strapi-v5-frontend.vercel.app/newsletter/unsubscribe?newsletterUserDocumentId=<%= newsletterUserDocumentId %>&unsubscribeToken=<%= unsubscribeToken %>`}"
                                 style="color: #067df7; text-decoration: none"
                                   >
                                   Unsubscribe
@@ -182,11 +182,11 @@ const sendNewsletter = async (
     `,
   };
 
-  await strapi.plugins["email"].services.email.sendTemplatedEmail(
+  await strapi.plugins['email'].services.email.sendTemplatedEmail(
     {
       to: userEmail,
-      from: "piotrsliwka333@gmail.com",
-      replyTo: "piotrsliwka333@gmail.com",
+      from: 'piotrsliwka333@gmail.com',
+      replyTo: 'piotrsliwka333@gmail.com',
       // from: is not specified, the defaultFrom is used.
     },
     emailTemplate,
@@ -194,7 +194,7 @@ const sendNewsletter = async (
       user: {
         email: userEmail,
       },
-      newsletterUserId: newsletterUserId,
+      newsletterUserDocumentId: newsletterUserDocumentId,
       unsubscribeToken: unsubscribeToken,
       slug: slug,
     }
@@ -205,11 +205,11 @@ export default {
   async afterCreate(event) {
     // Connected to "Save" button in admin panel
     const { result } = event;
-    if (result.locale !== "en") return;
+    if (result.locale !== 'en') return;
 
     try {
       const newsletterUser = await strapi.entityService.findMany(
-        "api::newsletter-user.newsletter-user",
+        'api::newsletter-user.newsletter-user',
         { filters: { isConfirmed: true } }
       );
 
@@ -219,7 +219,7 @@ export default {
         tempArr.push(
           sendNewsletter(
             newsletterUser.email,
-            newsletterUser.id,
+            newsletterUser.documentId,
             newsletterUser.unsubscribeToken,
             result.title,
             result.description,
@@ -234,4 +234,4 @@ export default {
       console.log(err);
     }
   },
-}
+};
