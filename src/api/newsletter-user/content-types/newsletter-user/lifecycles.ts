@@ -12,14 +12,14 @@ export default {
 
     const { data } = event.params;
     event.state = 'blockAfterCreate';
-    // const response = await strapi.documents('api::newsletter-user.newsletter-user').findFirst({
-    //   filters: {
-    //     email: data.email,
-    //   },
-    // });
-    const response = await strapi.db.query('api::newsletter-user.newsletter-user').findOne({
-      where: { email: data.email },
+    const response = await strapi.documents('api::newsletter-user.newsletter-user').findFirst({
+      filters: {
+        email: data.email,
+      },
     });
+    // const response = await strapi.db.query('api::newsletter-user.newsletter-user').findOne({
+    //   where: { email: data.email },
+    // });
     console.log('beforeCreate - response');
     console.log(response);
 
