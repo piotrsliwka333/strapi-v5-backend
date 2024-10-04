@@ -205,6 +205,7 @@ export default {
   async afterCreate(event) {
     // Connected to "Save" button in admin panel
     const { result } = event;
+    // console.log(event);
     if (result.locale !== 'en') return;
 
     try {
