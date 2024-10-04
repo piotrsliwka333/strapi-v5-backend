@@ -9,9 +9,13 @@ const { ApplicationError } = errors;
 export default {
   async beforeCreate(event) {
     console.log('test !!!');
-    console.log(event);
 
     const { data } = event.params;
+    // const response = await strapi.documents('api::newsletter-user.newsletter-user').findFirst({
+    //   filters: {
+    //     email: data.email,
+    //   },
+    // });
     const response = await strapi.db.query('api::newsletter-user.newsletter-user').findOne({
       where: { email: data.email },
     });
@@ -23,15 +27,14 @@ export default {
         foo: 'bar',
       });
     if (response && response.email && !response.isConfirmed) {
-      try {
-        await strapi.plugins['email'].services.email.send({
-          // here it don't have id  yet because it hasn't been created yet. in before
-          to: response.email,
-          from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
-          replyTo: 'piotrsliwka333@gmail.com',
-          subject: 'Rohi Global consulting Newsletter',
-          text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
-          html: `
+      await strapi.plugins['email'].services.email.send({
+        // here it don't have id  yet because it hasn't been created yet. in before
+        to: response.email,
+        from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
+        replyTo: 'piotrsliwka333@gmail.com',
+        subject: 'Rohi Global consulting Newsletter',
+        text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
+        html: `
           <table width="100%" style="width: 100% !important" border="0" cellspacing="0" cellpadding="0">
             <tbody>
               <tr>
@@ -124,12 +127,7 @@ export default {
             </tbody>
           </table>
           `,
-        });
-      } catch (e) {
-        throw new ApplicationError('strapiErrors.newsletter.smtp_server_error', {
-          foo: 'bar',
-        });
-      }
+      });
 
       throw new ApplicationError('strapiErrors.newsletter.emailAssignedAndNotConfirmed', {
         foo: 'bar',
@@ -141,14 +139,13 @@ export default {
     // Connected to "Save" button in admin panel
     console.log('after Create !!!!!');
     const { result } = event;
-    try {
-      await strapi.plugins['email'].services.email.send({
-        to: result.email,
-        from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
-        replyTo: 'piotrsliwka333@gmail.com',
-        subject: 'Rohi Global consulting Newsletter',
-        text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
-        html: `
+    await strapi.plugins['email'].services.email.send({
+      to: result.email,
+      from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
+      replyTo: 'piotrsliwka333@gmail.com',
+      subject: 'Rohi Global consulting Newsletter',
+      text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
+      html: `
         <table width="100%" style="width: 100% !important" border="0" cellspacing="0" cellpadding="0">
           <tbody>
             <tr>
@@ -241,11 +238,6 @@ export default {
           </tbody>
         </table>
         `,
-      });
-    } catch (err) {
-      throw new ApplicationError('strapiErrors.newsletter.smtp_server_error', {
-        foo: 'bar',
-      });
-    }
+    });
   },
 };
