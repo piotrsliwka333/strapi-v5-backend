@@ -204,7 +204,7 @@ export default {
                                     </p>
                                     <a
                                       target="_blank"
-                                      href="${`https://strapi-v5-frontend.vercel.app/newsletter/subscribe?newsletterUserId=${result.id}&confirmationToken=${result.confirmationToken}`}"
+                                      href="${`https://strapi-v5-frontend.vercel.app/newsletter/subscribe?newsletterUserId=${result.documentId}&confirmationToken=${result.confirmationToken}`}"
                                       style="
                                         background-color: #000;
                                         border-radius: 5px;
