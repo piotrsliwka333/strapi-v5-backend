@@ -4,10 +4,11 @@
   "info": {
     "singularName": "newsletter-user",
     "pluralName": "newsletter-users",
-    "displayName": "Newsletter User"
+    "displayName": "Newsletter User",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

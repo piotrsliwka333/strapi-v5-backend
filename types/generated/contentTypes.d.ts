@@ -663,9 +663,10 @@ export interface ApiNewsletterUserNewsletterUser
     singularName: 'newsletter-user';
     pluralName: 'newsletter-users';
     displayName: 'Newsletter User';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     email: Schema.Attribute.Email &
