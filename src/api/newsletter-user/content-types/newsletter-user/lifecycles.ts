@@ -23,7 +23,7 @@ export default {
         "strapiErrors.newsletter.emailAssignedAndConfirmed",
         { foo: "bar" }
       );
-    if (response && !response.isConfirmed) {
+    if (response && response.email && !response.isConfirmed) {
       await strapi.plugins["email"].services.email.send({
         // here it don't have id  yet because it hasn't been created yet. in before
         to: response.email,
