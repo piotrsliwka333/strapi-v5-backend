@@ -15,7 +15,7 @@
     "email": {
       "type": "email",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "unsubscribeToken": {
       "type": "uid",

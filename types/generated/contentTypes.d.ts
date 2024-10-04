@@ -669,9 +669,7 @@ export interface ApiNewsletterUserNewsletterUser
     draftAndPublish: false;
   };
   attributes: {
-    email: Schema.Attribute.Email &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
     unsubscribeToken: Schema.Attribute.UID & Schema.Attribute.Required;
     confirmationToken: Schema.Attribute.UID & Schema.Attribute.Required;
     isConfirmed: Schema.Attribute.Boolean & Schema.Attribute.Required;
