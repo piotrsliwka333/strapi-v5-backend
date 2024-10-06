@@ -11,7 +11,6 @@ export default {
     console.log('test !!!');
 
     const { data } = event.params;
-    event.state = 'blockAfterCreate';
     const response = await strapi.documents('api::newsletter-user.newsletter-user').findFirst({
       filters: {
         email: data.email,
@@ -134,7 +133,6 @@ export default {
         foo: 'bar',
       });
     }
-    event.state = 'allowAfterCreate';
   },
 
   async afterCreate(event) {
@@ -143,7 +141,6 @@ export default {
     const { result, state } = event;
     console.log(result);
     console.log(state);
-    if (state === 'blockAfterCreate') return;
     await strapi.plugins['email'].services.email.send({
       to: result.email,
       from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
