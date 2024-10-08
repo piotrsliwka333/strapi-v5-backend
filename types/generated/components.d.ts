@@ -49,6 +49,18 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTest2 extends Struct.ComponentSchema {
+  collectionName: 'components_sections_test2s';
+  info: {
+    displayName: 'Test2';
+    icon: 'apps';
+  };
+  attributes: {
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsOffers extends Struct.ComponentSchema {
   collectionName: 'components_sections_offers';
   info: {
@@ -59,7 +71,7 @@ export interface SectionsOffers extends Struct.ComponentSchema {
   attributes: {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     videoUrl: Schema.Attribute.Text & Schema.Attribute.Required;
-    offers: Schema.Attribute.Component<'elements.offer', true>;
+    offers: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'>;
   };
 }
 
@@ -93,7 +105,7 @@ export interface SectionsClients extends Struct.ComponentSchema {
     description: '';
   };
   attributes: {
-    clients: Schema.Attribute.Component<'elements.client', true>;
+    clients: Schema.Attribute.Relation<'oneToMany', 'api::client.client'>;
   };
 }
 
@@ -658,6 +670,7 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
+      'sections.test2': SectionsTest2;
       'sections.offers': SectionsOffers;
       'sections.hero': SectionsHero;
       'sections.clients': SectionsClients;

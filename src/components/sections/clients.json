@@ -8,10 +8,9 @@
   "options": {},
   "attributes": {
     "clients": {
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.client",
-      "required": false
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::client.client"
     }
   }
 }

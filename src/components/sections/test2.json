@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_test2s",
+  "info": {
+    "displayName": "Test2",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

@@ -633,35 +633,13 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
     description: '';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    url: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
     icon: Schema.Attribute.Media<'images' | 'files'> &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -754,6 +732,58 @@ export interface ApiNewsletterUserNewsletterUser
   };
 }
 
+export interface ApiOfferOffer extends Struct.CollectionTypeSchema {
+  collectionName: 'offers';
+  info: {
+    singularName: 'offer';
+    pluralName: 'offers';
+    displayName: 'Offer';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    icon: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'>;
+  };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: 'pages';
   info: {
@@ -785,6 +815,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.advanced-hero',
         'sections.about-us',
         'sections.offers',
+        'sections.test2',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -1185,6 +1216,7 @@ declare module '@strapi/strapi' {
       'api::client.client': ApiClientClient;
       'api::global.global': ApiGlobalGlobal;
       'api::newsletter-user.newsletter-user': ApiNewsletterUserNewsletterUser;
+      'api::offer.offer': ApiOfferOffer;
       'api::page.page': ApiPagePage;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
