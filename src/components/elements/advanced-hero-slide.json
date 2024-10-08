@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_elements_advanced_hero_slides",
+  "info": {
+    "displayName": "Advanced Hero Slide",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 300,
+      "required": true
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_offers",
+  "info": {
+    "displayName": "Offers",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "videoUrl": {
+      "type": "text",
+      "required": true
+    },
+    "offers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.offer"
+    }
+  }
+}

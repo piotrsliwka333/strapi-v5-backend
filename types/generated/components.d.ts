@@ -50,6 +50,102 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsOffers extends Struct.ComponentSchema {
+  collectionName: 'components_sections_offers';
+  info: {
+    displayName: 'Offers';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    videoUrl: Schema.Attribute.Text & Schema.Attribute.Required;
+    offers: Schema.Attribute.Component<'elements.offer', true>;
+  };
+}
+
+export interface SectionsHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_heroes';
+  info: {
+    displayName: 'Hero';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 400;
+      }>;
+    imageLeft: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    imageRight: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
+export interface SectionsClients extends Struct.ComponentSchema {
+  collectionName: 'components_sections_clients';
+  info: {
+    displayName: 'Clients';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    clients: Schema.Attribute.Component<'elements.client', true>;
+  };
+}
+
+export interface SectionsAdvancedHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_advanced_heroes';
+  info: {
+    displayName: 'Advanced Hero';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    background: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    slides: Schema.Attribute.Component<'elements.advanced-hero-slide', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    elements: Schema.Attribute.Component<
+      'elements.advanced-hero-element',
+      true
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 6;
+          max: 6;
+        },
+        number
+      >;
+  };
+}
+
+export interface SectionsAboutUs extends Struct.ComponentSchema {
+  collectionName: 'components_sections_about_uses';
+  info: {
+    displayName: 'About Us';
+    icon: 'apps';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    button: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
 export interface LayoutHeader extends Struct.ComponentSchema {
   collectionName: 'components_layout_headers';
   info: {
@@ -97,6 +193,24 @@ export interface ElementsSocialLink extends Struct.ComponentSchema {
     type: Schema.Attribute.Enumeration<
       ['FACEBOOK', 'X', 'INSTAGRAM', 'YOUTUBE', 'LINKEDIN']
     >;
+  };
+}
+
+export interface ElementsOffer extends Struct.ComponentSchema {
+  collectionName: 'components_elements_offers';
+  info: {
+    displayName: 'Offer';
+    icon: 'apps';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    icon: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -175,6 +289,52 @@ export interface ElementsFooterContact extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsClient extends Struct.ComponentSchema {
+  collectionName: 'components_elements_clients';
+  info: {
+    displayName: 'Client';
+    icon: 'apps';
+  };
+  attributes: {
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsAdvancedHeroSlide extends Struct.ComponentSchema {
+  collectionName: 'components_elements_advanced_hero_slides';
+  info: {
+    displayName: 'Advanced Hero Slide';
+    icon: 'apps';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    link: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
+export interface ElementsAdvancedHeroElement extends Struct.ComponentSchema {
+  collectionName: 'components_elements_advanced_hero_elements';
+  info: {
+    displayName: 'Advanced Hero Element';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -182,14 +342,23 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
+      'sections.offers': SectionsOffers;
+      'sections.hero': SectionsHero;
+      'sections.clients': SectionsClients;
+      'sections.advanced-hero': SectionsAdvancedHero;
+      'sections.about-us': SectionsAboutUs;
       'layout.header': LayoutHeader;
       'layout.footer': LayoutFooter;
       'elements.social-link': ElementsSocialLink;
+      'elements.offer': ElementsOffer;
       'elements.newsletter': ElementsNewsletter;
       'elements.main-link': ElementsMainLink;
       'elements.logo': ElementsLogo;
       'elements.link': ElementsLink;
       'elements.footer-contact': ElementsFooterContact;
+      'elements.client': ElementsClient;
+      'elements.advanced-hero-slide': ElementsAdvancedHeroSlide;
+      'elements.advanced-hero-element': ElementsAdvancedHeroElement;
     }
   }
 }

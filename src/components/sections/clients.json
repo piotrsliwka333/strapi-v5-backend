@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_clients",
+  "info": {
+    "displayName": "Clients",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "clients": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.client",
+      "required": false
+    }
+  }
+}

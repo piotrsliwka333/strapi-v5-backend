@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_sections_advanced_heroes",
+  "info": {
+    "displayName": "Advanced Hero",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "background": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.advanced-hero-slide",
+      "min": 1,
+      "required": true
+    },
+    "elements": {
+      "type": "component",
+      "repeatable": true,
+      "max": 6,
+      "required": true,
+      "min": 6,
+      "component": "elements.advanced-hero-element"
+    }
+  }
+}
