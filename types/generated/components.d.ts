@@ -15,6 +15,17 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedRichText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_rich_texts';
+  info: {
+    displayName: 'Rich text';
+    icon: 'apps';
+  };
+  attributes: {
+    body: Schema.Attribute.RichText;
+  };
+}
+
 export interface SectionsOffers extends Struct.ComponentSchema {
   collectionName: 'components_sections_offers';
   info: {
@@ -621,6 +632,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.seo': SharedSeo;
+      'shared.rich-text': SharedRichText;
       'sections.offers': SectionsOffers;
       'sections.hero': SectionsHero;
       'sections.clients': SectionsClients;
