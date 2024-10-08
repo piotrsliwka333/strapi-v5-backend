@@ -15,41 +15,6 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedRichText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_rich_texts';
-  info: {
-    displayName: 'Rich text';
-    icon: 'align-justify';
-    description: '';
-  };
-  attributes: {
-    body: Schema.Attribute.RichText;
-  };
-}
-
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    title: Schema.Attribute.String;
-    body: Schema.Attribute.Text;
-  };
-}
-
-export interface SharedMedia extends Struct.ComponentSchema {
-  collectionName: 'components_shared_media';
-  info: {
-    displayName: 'Media';
-    icon: 'file-video';
-  };
-  attributes: {
-    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-  };
-}
-
 export interface SectionsOffers extends Struct.ComponentSchema {
   collectionName: 'components_sections_offers';
   info: {
@@ -335,13 +300,327 @@ export interface ElementsAdvancedHeroElement extends Struct.ComponentSchema {
   };
 }
 
+export interface ArticleSharedRichText extends Struct.ComponentSchema {
+  collectionName: 'components_article_shared_rich_texts';
+  info: {
+    displayName: 'Rich Text';
+    icon: 'apps';
+  };
+  attributes: {
+    body: Schema.Attribute.RichText;
+  };
+}
+
+export interface ArticleSharedMedia extends Struct.ComponentSchema {
+  collectionName: 'components_article_shared_media';
+  info: {
+    displayName: 'Media';
+    icon: 'apps';
+  };
+  attributes: {
+    file: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ArticleSharedCtaCommandLine extends Struct.ComponentSchema {
+  collectionName: 'components_article_shared_cta_command_lines';
+  info: {
+    displayName: 'Cta Command Line';
+    icon: 'apps';
+  };
+  attributes: {
+    language: Schema.Attribute.Enumeration<
+      [
+        'abap',
+        'abnf',
+        'actionscript',
+        'ada',
+        'agda',
+        'al',
+        'antlr4',
+        'apacheconf',
+        'apex',
+        'apl',
+        'applescript',
+        'aql',
+        'arduino',
+        'arff',
+        'asciidoc',
+        'asm6502',
+        'asmatmel',
+        'aspnet',
+        'autohotkey',
+        'autoit',
+        'avisynth',
+        'avroIdl (avro-idl)',
+        'bash',
+        'basic',
+        'batch',
+        'bbcode',
+        'bicep',
+        'birb',
+        'bison',
+        'bnf',
+        'brainfuck',
+        'brightscript',
+        'bro',
+        'bsl',
+        'c',
+        'cfscript',
+        'chaiscript',
+        'cil',
+        'clike',
+        'clojure',
+        'cmake',
+        'cobol',
+        'coffeescript',
+        'concurnas',
+        'coq',
+        'cpp',
+        'crystal',
+        'csharp',
+        'cshtml',
+        'csp',
+        'cssExtras (css-extras)',
+        'css',
+        'csv',
+        'cypher',
+        'd',
+        'dart',
+        'dataweave',
+        'dax',
+        'dhall',
+        'diff',
+        'django',
+        'dnsZoneFile (dns-zone-file)',
+        'docker',
+        'dot',
+        'ebnf',
+        'editorconfig',
+        'eiffel',
+        'ejs',
+        'elixir',
+        'elm',
+        'erb',
+        'erlang',
+        'etlua',
+        'excelFormula (excel-formula)',
+        'factor',
+        'falselang (false)',
+        'firestoreSecurityRules (firestore-security-rules)',
+        'flow',
+        'fortran',
+        'fsharp',
+        'ftl',
+        'gap',
+        'gcode',
+        'gdscript',
+        'gedcom',
+        'gherkin',
+        'git',
+        'glsl',
+        'gml',
+        'gn',
+        'goModule (go-module)',
+        'go',
+        'graphql',
+        'groovy',
+        'haml',
+        'handlebars',
+        'haskell',
+        'haxe',
+        'hcl',
+        'hlsl',
+        'hoon',
+        'hpkp',
+        'hsts',
+        'http',
+        'ichigojam',
+        'icon',
+        'icuMessageFormat (icu-message-format)',
+        'idris',
+        'iecst',
+        'ignore',
+        'inform7',
+        'ini',
+        'io',
+        'j',
+        'java',
+        'javadoc',
+        'javadoclike',
+        'javascript',
+        'javastacktrace',
+        'jexl',
+        'jolie',
+        'jq',
+        'jsExtras (js-extras)',
+        'jsTemplates (js-templates)',
+        'jsdoc',
+        'json',
+        'json5',
+        'jsonp',
+        'jsstacktrace',
+        'jsx',
+        'julia',
+        'keepalived',
+        'keyman',
+        'kotlin',
+        'kumir',
+        'kusto',
+        'latex',
+        'latte',
+        'less',
+        'lilypond',
+        'liquid',
+        'lisp',
+        'livescript',
+        'llvm',
+        'log',
+        'lolcode',
+        'lua',
+        'magma',
+        'makefile',
+        'markdown',
+        'markupTemplating (markup-templating)',
+        'markup',
+        'matlab',
+        'maxscript',
+        'mel',
+        'mermaid',
+        'mizar',
+        'mongodb',
+        'monkey',
+        'moonscript',
+        'n1ql',
+        'n4js',
+        'nand2tetrisHdl (nand2tetris-hdl)',
+        'naniscript',
+        'nasm',
+        'neon',
+        'nevod',
+        'nginx',
+        'nim',
+        'nix',
+        'nsis',
+        'objectivec',
+        'ocaml',
+        'opencl',
+        'openqasm',
+        'oz',
+        'parigp',
+        'parser',
+        'pascal',
+        'pascaligo',
+        'pcaxis',
+        'peoplecode',
+        'perl',
+        'phpExtras (php-extras)',
+        'php',
+        'phpdoc',
+        'plsql',
+        'powerquery',
+        'powershell',
+        'processing',
+        'prolog',
+        'promql',
+        'properties',
+        'protobuf',
+        'psl',
+        'pug',
+        'puppet',
+        'pure',
+        'purebasic',
+        'purescript',
+        'python',
+        'q',
+        'qml',
+        'qore',
+        'qsharp',
+        'r',
+        'racket',
+        'reason',
+        'regex',
+        'rego',
+        'renpy',
+        'rest',
+        'rip',
+        'roboconf',
+        'robotframework',
+        'ruby',
+        'rust',
+        'sas',
+        'sass',
+        'scala',
+        'scheme',
+        'scss',
+        'shellSession (shell-session)',
+        'smali',
+        'smalltalk',
+        'smarty',
+        'sml',
+        'solidity',
+        'solutionFile (solution-file)',
+        'soy',
+        'sparql',
+        'splunkSpl (splunk-spl)',
+        'sqf',
+        'sql',
+        'squirrel',
+        'stan',
+        'stylus',
+        'swift',
+        'systemd',
+        't4Cs (t4-cs)',
+        't4Templating (t4-templating)',
+        't4Vb (t4-vb)',
+        'tap',
+        'tcl',
+        'textile',
+        'toml',
+        'tremor',
+        'tsx',
+        'tt2',
+        'turtle',
+        'twig',
+        'typescript',
+        'typoscript',
+        'unrealscript',
+        'uorazor',
+        'uri',
+        'v',
+        'vala',
+        'vbnet',
+        'velocity',
+        'verilog',
+        'vhdl',
+        'vim',
+        'visualBasic (visual-basic)',
+        'warpscript',
+        'wasm',
+        'webIdl (web-idl)',
+        'wiki',
+        'wolfram',
+        'wren',
+        'xeora',
+        'xmlDoc (xml-doc)',
+        'xojo',
+        'xquery',
+        'yaml',
+        'yang',
+        'zig',
+      ]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'typescript'>;
+    commandLine: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.seo': SharedSeo;
-      'shared.rich-text': SharedRichText;
-      'shared.quote': SharedQuote;
-      'shared.media': SharedMedia;
       'sections.offers': SectionsOffers;
       'sections.hero': SectionsHero;
       'sections.clients': SectionsClients;
@@ -359,6 +638,9 @@ declare module '@strapi/strapi' {
       'elements.client': ElementsClient;
       'elements.advanced-hero-slide': ElementsAdvancedHeroSlide;
       'elements.advanced-hero-element': ElementsAdvancedHeroElement;
+      'article-shared.rich-text': ArticleSharedRichText;
+      'article-shared.media': ArticleSharedMedia;
+      'article-shared.cta-command-line': ArticleSharedCtaCommandLine;
     }
   }
 }

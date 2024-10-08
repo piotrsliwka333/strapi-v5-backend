@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_article_shared_rich_texts",
+  "info": {
+    "displayName": "Rich Text",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "body": {
+      "type": "richtext"
+    }
+  }
+}
