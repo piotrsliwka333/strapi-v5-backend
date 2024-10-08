@@ -38,6 +38,17 @@ export interface SharedQuote extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedMedia extends Struct.ComponentSchema {
+  collectionName: 'components_shared_media';
+  info: {
+    displayName: 'Media';
+    icon: 'apps';
+  };
+  attributes: {
+    file: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface SectionsOffers extends Struct.ComponentSchema {
   collectionName: 'components_sections_offers';
   info: {
@@ -646,6 +657,7 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
+      'shared.media': SharedMedia;
       'sections.offers': SectionsOffers;
       'sections.hero': SectionsHero;
       'sections.clients': SectionsClients;
