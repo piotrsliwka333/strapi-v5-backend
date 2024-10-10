@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_article_shared_article_heroes",
+  "info": {
+    "displayName": "Article Hero",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary"
+      ],
+      "default": "primary",
+      "required": true
+    }
+  }
+}

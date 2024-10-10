@@ -532,6 +532,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'article-shared.rich-text',
         'article-shared.media',
         'article-shared.cta-command-line',
+        'sections.discover-articles',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -815,7 +816,9 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.advanced-hero',
         'sections.about-us',
         'sections.offers',
-        'sections.test2',
+        'sections.latest-articles',
+        'sections.discover-articles',
+        'sections.blog-hero',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

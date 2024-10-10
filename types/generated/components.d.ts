@@ -49,18 +49,6 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
-export interface SectionsTest2 extends Struct.ComponentSchema {
-  collectionName: 'components_sections_test2s';
-  info: {
-    displayName: 'Test2';
-    icon: 'apps';
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    title: Schema.Attribute.String;
-  };
-}
-
 export interface SectionsOffers extends Struct.ComponentSchema {
   collectionName: 'components_sections_offers';
   info: {
@@ -72,6 +60,24 @@ export interface SectionsOffers extends Struct.ComponentSchema {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     videoUrl: Schema.Attribute.Text & Schema.Attribute.Required;
     offers: Schema.Attribute.Relation<'oneToMany', 'api::offer.offer'>;
+  };
+}
+
+export interface SectionsLatestArticles extends Struct.ComponentSchema {
+  collectionName: 'components_sections_latest_articles';
+  info: {
+    displayName: 'Latest Articles';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    categoriesListTile: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Categories'>;
+    pagesPaginationListTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Pages'>;
   };
 }
 
@@ -97,6 +103,18 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsDiscoverArticles extends Struct.ComponentSchema {
+  collectionName: 'components_sections_discover_articles';
+  info: {
+    displayName: 'Discover Articles';
+    icon: 'apps';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+  };
+}
+
 export interface SectionsClients extends Struct.ComponentSchema {
   collectionName: 'components_sections_clients';
   info: {
@@ -106,6 +124,30 @@ export interface SectionsClients extends Struct.ComponentSchema {
   };
   attributes: {
     clients: Schema.Attribute.Relation<'oneToMany', 'api::client.client'>;
+  };
+}
+
+export interface SectionsBlogHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_blog_heroes';
+  info: {
+    displayName: 'Blog Hero';
+    icon: 'apps';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    articleLeft: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    articleRightTop: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::article.article'
+    >;
+    articleRightBottom: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::article.article'
+    >;
   };
 }
 
@@ -663,6 +705,19 @@ export interface ArticleSharedCtaCommandLine extends Struct.ComponentSchema {
   };
 }
 
+export interface ArticleSharedArticleHero extends Struct.ComponentSchema {
+  collectionName: 'components_article_shared_article_heroes';
+  info: {
+    displayName: 'Article Hero';
+    icon: 'apps';
+  };
+  attributes: {
+    type: Schema.Attribute.Enumeration<['primary', 'secondary']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'primary'>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -670,10 +725,12 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
-      'sections.test2': SectionsTest2;
       'sections.offers': SectionsOffers;
+      'sections.latest-articles': SectionsLatestArticles;
       'sections.hero': SectionsHero;
+      'sections.discover-articles': SectionsDiscoverArticles;
       'sections.clients': SectionsClients;
+      'sections.blog-hero': SectionsBlogHero;
       'sections.advanced-hero': SectionsAdvancedHero;
       'sections.about-us': SectionsAboutUs;
       'layout.header': LayoutHeader;
@@ -691,6 +748,7 @@ declare module '@strapi/strapi' {
       'article-shared.rich-text': ArticleSharedRichText;
       'article-shared.media': ArticleSharedMedia;
       'article-shared.cta-command-line': ArticleSharedCtaCommandLine;
+      'article-shared.article-hero': ArticleSharedArticleHero;
     }
   }
 }

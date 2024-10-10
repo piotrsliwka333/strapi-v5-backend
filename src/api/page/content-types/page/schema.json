@@ -38,7 +38,9 @@
         "sections.advanced-hero",
         "sections.about-us",
         "sections.offers",
-        "sections.test2"
+        "sections.latest-articles",
+        "sections.discover-articles",
+        "sections.blog-hero"
       ]
     }
   }

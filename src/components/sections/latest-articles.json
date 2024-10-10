@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_latest_articles",
+  "info": {
+    "displayName": "Latest Articles",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "categoriesListTile": {
+      "type": "string",
+      "required": true,
+      "default": "Categories"
+    },
+    "pagesPaginationListTitle": {
+      "type": "string",
+      "default": "Pages",
+      "required": true
+    }
+  }
+}

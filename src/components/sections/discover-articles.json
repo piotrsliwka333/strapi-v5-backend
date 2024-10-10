@@ -1,18 +1,19 @@
 {
-  "collectionName": "components_sections_test2s",
+  "collectionName": "components_sections_discover_articles",
   "info": {
-    "displayName": "Test2",
+    "displayName": "Discover Articles",
     "icon": "apps"
   },
   "options": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
     "articles": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article.article"
-    },
-    "title": {
-      "type": "string"
     }
   }
 }
