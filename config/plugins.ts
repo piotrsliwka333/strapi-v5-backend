@@ -1,5 +1,5 @@
 export default () => ({
-  seo: {
-    enabled: true,
-  },
+  // seo: {
+  //   enabled: true,
+  // },
 });
