@@ -541,6 +541,13 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         };
       }>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -671,18 +678,27 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
   attributes: {
     favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     header: Schema.Attribute.Component<'layout.header', false> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     footer: Schema.Attribute.Component<'layout.footer', false> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -821,6 +837,13 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.blog-hero',
       ]
     > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

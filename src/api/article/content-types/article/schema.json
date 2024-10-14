@@ -80,6 +80,17 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "articles"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo",
+      "required": true
     }
   }
 }

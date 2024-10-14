@@ -42,6 +42,17 @@
         "sections.discover-articles",
         "sections.blog-hero"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo",
+      "required": true
     }
   }
 }
