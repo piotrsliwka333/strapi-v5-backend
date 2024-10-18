@@ -1,3 +1,5 @@
+const { env } = require('@strapi/utils');
+
 function getStrapiURL(path = '') {
   return `${'https://generous-leader-d581ba65b8.strapiapp.com'}${path}`;
 }
@@ -66,7 +68,7 @@ const sendNewsletter = async (
                               <div>
                                 <img
                                   style="margin: 0 0 30px 0"
-                                  src="https://generous-leader-d581ba65b8.media.strapiapp.com/logo_1_1_6acbc018f0.png"
+                                  src="https://my-project-name-images-strapi-v5.s3.eu-north-1.amazonaws.com/logo_1_1_6acbc018f0.png"
                                 />
                                 <h1
                                   style="
@@ -102,7 +104,7 @@ const sendNewsletter = async (
                                 </p>
                                 <a
                                   target="_blank"
-                                  href="https://strapi-v5-frontend.vercel.app/blog/articles/<%= slug %>"
+                                  href="${`${env('EMAIL_DOMAIN')}/blog/articles/<%= slug %>`}"
                                   style="
                                     background-color: #000;
                                     border-radius: 5px;
@@ -159,7 +161,7 @@ const sendNewsletter = async (
                                 </p>
                                 <a 
                                 target="_blank"
-                                href="${`https://strapi-v5-frontend.vercel.app/newsletter/unsubscribe?newsletterUserDocumentId=<%= newsletterUserDocumentId %>&unsubscribeToken=<%= unsubscribeToken %>`}"
+                                href="${`${env('EMAIL_DOMAIN')}/newsletter/unsubscribe?newsletterUserDocumentId=<%= newsletterUserDocumentId %>&unsubscribeToken=<%= unsubscribeToken %>`}"
                                 style="color: #067df7; text-decoration: none"
                                   >
                                   Unsubscribe
@@ -185,8 +187,8 @@ const sendNewsletter = async (
   await strapi.plugins['email'].services.email.sendTemplatedEmail(
     {
       to: userEmail,
-      from: 'piotrsliwka333@gmail.com',
-      replyTo: 'piotrsliwka333@gmail.com',
+      from: 'no-reply@test1020.xyz',
+      replyTo: 'admin@test1020.xyz',
       // from: is not specified, the defaultFrom is used.
     },
     emailTemplate,

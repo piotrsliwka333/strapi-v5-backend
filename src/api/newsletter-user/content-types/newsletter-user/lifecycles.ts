@@ -1,4 +1,4 @@
-const { errors } = require('@strapi/utils');
+const { errors, env } = require('@strapi/utils');
 const { ApplicationError } = errors;
 
 /// really important !!!!!!!
@@ -9,6 +9,7 @@ const { ApplicationError } = errors;
 export default {
   async beforeCreate(event) {
     console.log('test !!!');
+    console.log(env('EMAIL_DOMAIN'));
 
     const { data } = event.params;
     const response = await strapi.documents('api::newsletter-user.newsletter-user').findFirst({
@@ -30,8 +31,8 @@ export default {
       await strapi.plugins['email'].services.email.send({
         // here it don't have id  yet because it hasn't been created yet. in before
         to: response.email,
-        from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
-        replyTo: 'piotrsliwka333@gmail.com',
+        from: 'no-reply@test1020.xyz', // e.g. single sender verification in SendGrid
+        replyTo: 'admin@test1020.xyz',
         subject: 'Rohi Global consulting Newsletter',
         text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
         html: `
@@ -70,7 +71,7 @@ export default {
                                     <div>
                                       <img
                                         style="margin: 0 0 30px 0"
-                                        src="https://generous-leader-d581ba65b8.media.strapiapp.com/logo_1_1_6acbc018f0.png"
+                                        src="https://my-project-name-images-strapi-v5.s3.eu-north-1.amazonaws.com/logo_1_1_6acbc018f0.png"
                                       />
                                       <h1
                                         style="
@@ -93,7 +94,7 @@ export default {
                                       </p>
                                       <a
                                         target="_blank"
-                                        href="${`https://strapi-v5-frontend.vercel.app/newsletter/subscribe?newsletterUserDocumentId=${response.documentId}&confirmationToken=${response.confirmationToken}`}"
+                                        href="${`${env('EMAIL_DOMAIN')}/newsletter/subscribe?newsletterUserDocumentId=${response.documentId}&confirmationToken=${response.confirmationToken}`}"
                                         style="
                                           background-color: #000;
                                           border-radius: 5px;
@@ -143,8 +144,8 @@ export default {
     console.log(state);
     await strapi.plugins['email'].services.email.send({
       to: result.email,
-      from: 'piotrsliwka333@gmail.com', // e.g. single sender verification in SendGrid
-      replyTo: 'piotrsliwka333@gmail.com',
+      from: 'no-reply@test1020.xyz', // e.g. single sender verification in SendGrid
+      replyTo: 'admin@test1020.xyz',
       subject: 'Rohi Global consulting Newsletter',
       text: 'Welcome to Rohi Global consulting Newsletter. Here is your confirmation link', // Replace with a valid field ID
       html: `
@@ -183,7 +184,7 @@ export default {
                                   <div>
                                     <img
                                       style="margin: 0 0 30px 0"
-                                      src="https://generous-leader-d581ba65b8.media.strapiapp.com/logo_1_1_6acbc018f0.png"
+                                      src="https://my-project-name-images-strapi-v5.s3.eu-north-1.amazonaws.com/logo_1_1_6acbc018f0.png"
                                     />
                                     <h1
                                       style="
@@ -206,7 +207,7 @@ export default {
                                     </p>
                                     <a
                                       target="_blank"
-                                      href="${`https://strapi-v5-frontend.vercel.app/newsletter/subscribe?newsletterUserDocumentId=${result.documentId}&confirmationToken=${result.confirmationToken}`}"
+                                      href="${`${env('EMAIL_DOMAIN')}/newsletter/subscribe?newsletterUserDocumentId=${result.documentId}&confirmationToken=${result.confirmationToken}`}"
                                       style="
                                         background-color: #000;
                                         border-radius: 5px;

@@ -24,5 +24,19 @@ export default ({ env }) => ({
       delete: {},
     },
   },
+  email: {
+    config: {
+      provider: 'amazon-ses',
+      providerOptions: {
+        key: env('AWS_SES_KEY'),
+        secret: env('AWS_SES_SECRET'),
+        amazon: 'https://email.eu-north-1.amazonaws.com',
+      },
+      settings: {
+        defaultFrom: 'no-reply@test1020.xyz',
+        defaultReplyTo: 'admin@test1020.xyz',
+      },
+    },
+  },
   // ...
 });
