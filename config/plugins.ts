@@ -24,19 +24,32 @@ export default ({ env }) => ({
       delete: {},
     },
   },
-  email: {
-    config: {
-      provider: 'amazon-ses',
-      providerOptions: {
-        key: env('AWS_SES_KEY'),
-        secret: env('AWS_SES_SECRET'),
-        amazon: 'https://email.eu-north-1.amazonaws.com',
-      },
-      settings: {
-        defaultFrom: 'no-reply@test1020.xyz',
-        defaultReplyTo: 'admin@test1020.xyz',
-      },
-    },
-  },
+  // email - amazon ses configuration
+  // email: {
+  //   config: {
+  //     provider: 'amazon-ses',
+  //     providerOptions: {
+  //       key: env('AWS_SES_KEY'),
+  //       secret: env('AWS_SES_SECRET'),
+  //       amazon: 'https://email.eu-north-1.amazonaws.com',
+  //     },
+  //     settings: {
+  //       defaultFrom: 'no-reply@test1020.xyz',
+  //       defaultReplyTo: 'admin@test1020.xyz',
+  //     },
+  //   },
+  // },
+  // email: {
+  //   config: {
+  //     provider: 'sendgrid',
+  //     providerOptions: {
+  //       apiKey: env('SENDGRID_API_KEY'),
+  //     },
+  //     settings: {
+  //       defaultFrom: 'piotrsliwka333@gmail',
+  //       defaultReplyTo: 'piotrsliwka333@gmail',
+  //     },
+  //   },
+  // },
   // ...
 });
