@@ -48,6 +48,7 @@ settings.json
 *.jar
 *.rar
 *.tar
+*.tar.gz.enc
 *.zip
 *.com
 *.class
@@ -106,6 +107,9 @@ node_modules
 
 # package.lock
 package-lock.json
+
+# backups
+
 
 .yarn/*
 !.yarn/cache

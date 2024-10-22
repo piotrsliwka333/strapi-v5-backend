@@ -226,12 +226,15 @@ export interface SectionsAboutUs extends Struct.ComponentSchema {
   info: {
     displayName: 'About Us';
     icon: 'apps';
+    description: '';
   };
   attributes: {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    image: Schema.Attribute.Media<'images' | 'files'>;
-    button: Schema.Attribute.Component<'elements.link', false>;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    button: Schema.Attribute.Component<'elements.link', false> &
+      Schema.Attribute.Required;
   };
 }
 
