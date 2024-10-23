@@ -40,7 +40,8 @@
         "sections.offers",
         "sections.latest-articles",
         "sections.discover-articles",
-        "sections.blog-hero"
+        "sections.blog-hero",
+        "sections.services-hero"
       ]
     },
     "seo": {

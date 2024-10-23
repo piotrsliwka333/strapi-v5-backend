@@ -85,6 +85,25 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsServicesHero extends Struct.ComponentSchema {
+  collectionName: 'components_sections_services_heroes';
+  info: {
+    displayName: 'Services Hero';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    background: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    buttonOne: Schema.Attribute.Component<'elements.link', false> &
+      Schema.Attribute.Required;
+    buttonTwo: Schema.Attribute.Component<'elements.link', false> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsOffers extends Struct.ComponentSchema {
   collectionName: 'components_sections_offers';
   info: {
@@ -765,6 +784,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.meta-social': SharedMetaSocial;
       'shared.media': SharedMedia;
+      'sections.services-hero': SectionsServicesHero;
       'sections.offers': SectionsOffers;
       'sections.latest-articles': SectionsLatestArticles;
       'sections.hero': SectionsHero;

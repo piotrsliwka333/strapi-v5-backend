@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_sections_services_heroes",
+  "info": {
+    "displayName": "Services Hero",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "background": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "buttonOne": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link",
+      "required": true
+    },
+    "buttonTwo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link",
+      "required": true
+    }
+  }
+}

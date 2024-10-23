@@ -854,6 +854,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.latest-articles',
         'sections.discover-articles',
         'sections.blog-hero',
+        'sections.services-hero',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
